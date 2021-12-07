@@ -48,24 +48,6 @@ pipeline {
                }
             }
         }
-        stage('ocBuildDeploy') {
-            steps {
-                script {
-                    try {
-                        sh '''
-                        set +x
-                        HOME=/tmp
-                        oc login https://api.devrosa.ouw6.p1.openshiftapps.com:6443 --username ${usr} --password ${pass} 
-                        set -x
-                        oc project posttrade
-                        oc start-build act --follow=true --wait=true
-                        '''
-                    } catch (err) {
-                        currentBuild.result = 'FAILURE'
-                    }
-                }
-            }
-        }
         stage('Workspace') {
             steps {
                 cleanWs()
