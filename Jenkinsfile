@@ -18,6 +18,9 @@ pipeline {
     }
     stages {
         stage('Build') {
+            tools {
+                jdk "jdk8"
+                }            
             steps {
                 sh "mvn clean install -Dmaven.repo.local=/var/jenkins_home/.m2/repository"
             }
