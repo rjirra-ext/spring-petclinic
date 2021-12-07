@@ -6,6 +6,7 @@ pipeline {
     environment {
       pass = "${env.ocpass}"
       usr = "${env.ocuser}"
+      SONAR_TOKEN = "{env.SONAR_TOKEN}"
     }
     parameters {
         string(name: 'PROJECT_NAME', defaultValue: 'drivewealth-posttrade-acats-service', description: 'Give repo name here')
@@ -32,7 +33,7 @@ pipeline {
                     ORGANIZATION = "rjirra-ext"
                     SONAR_USER_HOME="/var/jenkins_home/.sonar"
                     PROJECT_NAME="rjirra-ext_spring-petclinic"
-              
+                    SONAR_TOKEN="$SONAR_TOKEN"              
                 }
             steps {
                 withSonarQubeEnv('SonarQube') {
